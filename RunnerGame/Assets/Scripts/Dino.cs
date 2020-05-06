@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Dino : MonoBehaviour
 {
@@ -16,12 +17,15 @@ public class Dino : MonoBehaviour
     public GameObject scoreText;
     public GameObject gameOverText;
 
+    private int currentScene;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
     // Update is called once per frame
@@ -37,6 +41,11 @@ public class Dino : MonoBehaviour
             {
                 DinoJump();
             }
+        }
+
+        if(isDead && Input.GetMouseButtonDown(0))
+        {
+            SceneManager.LoadScene(currentScene);
         }
 
     }
