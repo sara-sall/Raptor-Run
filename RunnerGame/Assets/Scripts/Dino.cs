@@ -12,20 +12,34 @@ public class Dino : MonoBehaviour
     private Animator anim;
     public bool isDead = false;
 
+    public int highScoreCount;
     private float scoreCount = 0;
+    private int trueScore;
     public Text score;
+    public Text highScore;
     public GameObject scoreText;
     public GameObject gameOverText;
+    public GameObject playAgainImage;
+    public GameObject playAgainText;
+    public GameObject soundOn;
+    public GameObject soundOff;
 
     private int currentScene;
 
+    AudioSource source;
+    public AudioClip jumpSound;
+    public AudioClip deadSound;
+    public AudioClip scoreSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        highScoreCount = PlayerPrefs.GetInt("highscore");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +49,7 @@ public class Dino : MonoBehaviour
         if (!isDead)
         {
             CheckScore();
+            CheckHighScore();
             DinoRun();
 
             if (Input.GetMouseButtonDown(0) && isGrouded)
@@ -45,10 +60,17 @@ public class Dino : MonoBehaviour
 
         if(isDead && Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene(currentScene);
+            PlayAgain();
         }
 
     }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(currentScene);
+    }
+
+
 
     private void DinoRun()
     {
@@ -59,6 +81,7 @@ public class Dino : MonoBehaviour
     {
         rb.velocity = new Vector2(0, 20);
         isGrouded = false;
+        source.PlayOneShot(jumpSound, 1f);
     }
 
     private void DinoDied()
@@ -66,12 +89,30 @@ public class Dino : MonoBehaviour
         isDead = true;
         anim.SetTrigger("dead");
         gameOverText.SetActive(true);
+        source.PlayOneShot(deadSound, 1f);
     }
 
     private void CheckScore()
     {
         scoreCount++;
-        score.text = ((int)(scoreCount/15)).ToString();
+        trueScore = ((int)(scoreCount / 15));
+        score.text = trueScore.ToString();
+
+        if( scoreCount % 1500 == 0)
+        {
+            source.PlayOneShot(scoreSound, 1f);
+        }
+
+        
+    }
+    private void CheckHighScore()
+    {
+        highScore.text = highScoreCount.ToString();
+        if(trueScore > highScoreCount)
+        {
+            highScoreCount = trueScore;
+            PlayerPrefs.SetInt("highscore", highScoreCount);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
