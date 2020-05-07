@@ -1146,6 +1146,8 @@ MonoBehaviour:
   playText: {fileID: 0}
   soundOn: {fileID: 2112453451}
   soundOff: {fileID: 1593401657}
+  highScoreCount: 0
+  highScore: {fileID: 1688078432}
 --- !u!60 &2040065669
 PolygonCollider2D:
   m_ObjectHideFlags: 0
