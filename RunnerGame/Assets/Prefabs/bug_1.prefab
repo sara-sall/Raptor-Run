@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7727871194609332595}
   - component: {fileID: 7727871194609332592}
   - component: {fileID: 7727871194609332593}
-  - component: {fileID: 7727871194609332594}
   - component: {fileID: 8714718618129176540}
   m_Layer: 0
   m_Name: bug_1
@@ -101,18 +100,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7727871194609332594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7727871194609332606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f301a1ce18fbb74a95b95d5e626e6e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &8714718618129176540
 PolygonCollider2D:
   m_ObjectHideFlags: 0

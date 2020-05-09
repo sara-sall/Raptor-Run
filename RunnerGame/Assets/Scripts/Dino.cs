@@ -128,10 +128,11 @@ public class Dino : MonoBehaviour
             DinoDied();
         }
 
-        if(collision.gameObject.tag == "point")
+       if(collision.gameObject.tag == "point")
         {
             scoreCount += 150;
             source.PlayOneShot(bugScore, 1f);
+            Destroy(collision.gameObject);
         }
     }
 }

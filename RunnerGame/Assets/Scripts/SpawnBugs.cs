@@ -22,7 +22,7 @@ public class SpawnBugs : MonoBehaviour
     {
         if (!GameObject.Find("Dino").GetComponent<Dino>().isDead)
         {
-            number = Random.Range(0, 8);
+            number = Random.Range(0, 3);
             randomPosition = Random.Range(21, 31);
             XPos = transform.position.x + randomPosition;
             bug = bugsArray[number] as GameObject;
