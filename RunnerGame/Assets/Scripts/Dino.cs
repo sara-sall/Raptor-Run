@@ -20,7 +20,6 @@ public class Dino : MonoBehaviour
     public GameObject scoreText;
     public GameObject gameOverText;
     public GameObject playAgainImage;
-    public GameObject playAgainText;
     public GameObject soundOn;
     public GameObject soundOff;
 
@@ -59,11 +58,6 @@ public class Dino : MonoBehaviour
             }
         }
 
-        if(isDead && Input.GetMouseButtonDown(0))
-        {
-            PlayAgain();
-        }
-
     }
 
     public void PlayAgain()
@@ -91,6 +85,7 @@ public class Dino : MonoBehaviour
         anim.SetTrigger("dead");
         gameOverText.SetActive(true);
         source.PlayOneShot(deadSound, 1f);
+        playAgainImage.SetActive(true);
     }
 
     private void CheckScore()
@@ -135,5 +130,23 @@ public class Dino : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    public void AudioToggle()
+    {
+        source.mute = true;
+    }
+
+    private void SoundOn()
+    {
+        soundOn.SetActive(false);
+        soundOff.SetActive(true);
+    }
+
+    private void SoundOff()
+    {
+        soundOn.SetActive(false);
+        soundOff.SetActive(true);
+    }
+
 }
 
