@@ -30,6 +30,7 @@ public class Dino : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip deadSound;
     public AudioClip scoreSound;
+    public AudioClip bugScore;
 
     // Start is called before the first frame update
     void Start()
@@ -125,6 +126,12 @@ public class Dino : MonoBehaviour
         if (collision.gameObject.tag == "obstacle")
         {
             DinoDied();
+        }
+
+        if(collision.gameObject.tag == "point")
+        {
+            scoreCount += 150;
+            source.PlayOneShot(bugScore, 1f);
         }
     }
 }

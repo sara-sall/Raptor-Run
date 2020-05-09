@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnObstacles : MonoBehaviour
+public class SpawnBugs : MonoBehaviour
 {
-
-    public GameObject[] obstacles;
-    private GameObject obj;
+    public GameObject[] bugsArray;
+    private GameObject bug;
     private float XPos;
     private int number;
 
@@ -15,8 +14,8 @@ public class SpawnObstacles : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spawn", 1.5f, 1.6f);
-        //Start method Spawn in 1.5s, repeat every 1.6s
+        InvokeRepeating("Spawn", 1.5f, 2f);
+        //Start method Spawn in 1.5s, repeat every 2s
     }
 
     private void Spawn()
@@ -26,9 +25,9 @@ public class SpawnObstacles : MonoBehaviour
             number = Random.Range(0, 8);
             randomPosition = Random.Range(21, 31);
             XPos = transform.position.x + randomPosition;
-            obj = obstacles[number] as GameObject;
+            bug = bugsArray[number] as GameObject;
 
-            Instantiate(obj, new Vector2(XPos, obj.transform.position.y), Quaternion.identity);
+            Instantiate(bug, new Vector2(XPos, bug.transform.position.y), Quaternion.identity);
         }
     }
 }
